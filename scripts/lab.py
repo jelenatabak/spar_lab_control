@@ -2,10 +2,7 @@
 
 import copy
 import rospy
-from sensor_msgs.msg import PointCloud2, PointField
-from std_msgs.msg import Header
-import ros_numpy
-import numpy as np
+from sensor_msgs.msg import PointCloud2
 import tf2_ros
 from tf2_sensor_msgs.tf2_sensor_msgs import do_transform_cloud
 import yaml
@@ -13,7 +10,6 @@ from geometry_msgs.msg import Pose, Point, PointStamped
 from spar_lab_control.srv import *
 from std_srvs.srv import Trigger, TriggerResponse
 import rospkg
-import pcl
 from sofia_perception.srv import DetectObject
 import rosbag
 
@@ -236,15 +232,15 @@ def main():
     rospy.init_node('laboratory_exercise')
     lab = Lab()
 
-    joint_goal = robosoft.read_vector_from_yaml(
+    joint_goal = lab.read_vector_from_yaml(
         'kinova_record.yaml')
     lab.record(joint_goal)
     print("Done with recording")
 
     lab.go_home()
 
-    print("Starting laboratory exercise - pick and place task")
-    lab.task1()
+    # print("Starting laboratory exercise - pick and place task")
+    # lab.task1()
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 <launch>
-    <rosparam command="load" file="$(find spar_lab_control)/resources/kinova_config.yaml" ns=''/>
+    <!-- <rosparam command="load" file="$(find spar_lab_control)/resources/kinova_config.yaml" ns=''/> -->
 
     <!-- <include file="$(find realsense2_camera)/launch/rs_rgbd.launch" /> -->
 

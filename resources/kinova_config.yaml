@@ -5,6 +5,6 @@ y_max: 0.45
 z_min: 0
 z_max: 0.2
 
-planning_group: ''
+planning_group: 'arm'
 base_frame: 'base_link'
 camera_frame: 'end_effector_link'

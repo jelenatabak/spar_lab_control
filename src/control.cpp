@@ -19,7 +19,7 @@ Control::Control (ros::NodeHandle& nodeHandle) {
 
     missionDoneClient_ = nodeHandle.serviceClient<std_srvs::Trigger>("/mission_done");
 
-    nodeHandle.getParam("/spar_lab_control/planning_group", planning_group_);
+    nodeHandle.getParam("/planning_group", planning_group_);
     move_group_ = std::make_shared<moveit::planning_interface::MoveGroupInterface> (planning_group_);
 
     move_group_->setStartStateToCurrentState();
