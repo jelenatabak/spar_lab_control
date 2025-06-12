@@ -33,10 +33,15 @@ class Lab(object):
 
 
         print('Waiting for services')
-        rospy.wait_for_service('go_to_joint_goal')
-        rospy.wait_for_service('go_to_pose_goal')
-        rospy.wait_for_service('go_to_position_goal')
-        rospy.wait_for_service('detect_object')
+        rospy.wait_for_service('go_to_joint_goal') # ovaj servis advertisea control
+        rospy.wait_for_service('go_to_pose_goal') # ovaj servis advertisea control
+        rospy.wait_for_service('go_to_position_goal') # ovaj servis advertisea control
+        rospy.wait_for_service('detect_object') # ovaj servis advertiseaju studenti
+
+        self.test_publisher = rospy.Publisher(
+            'test_pc', PointCloud2, queue_size=10)
+        self.point_publisher = rospy.Publisher(
+            'test_point', PointStamped, queue_size=10)
 
         self.go_to_joint_goal_client = rospy.ServiceProxy(
             'go_to_joint_goal', jointGoal)
@@ -46,11 +51,6 @@ class Lab(object):
             'go_to_position_goal', positionGoal)
         self.detect_objects_client = rospy.ServiceProxy(
             'detect_object', DetectObject)
-
-        self.test_publisher = rospy.Publisher(
-            'test_pc', PointCloud2, queue_size=10)
-        self.point_publisher = rospy.Publisher(
-            'test_point', PointStamped, queue_size=10)
 
         self.tfBuffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
@@ -128,7 +128,7 @@ class Lab(object):
         return poses_goal
 
     def record(self, joint_goal):
-        self.go_to_joint_goal_client.call(joint_goals[i])
+        self.go_to_joint_goal_client.call(joint_goal)
         self.check_mission_done()
 
         print('Waiting for pc message')
@@ -143,7 +143,11 @@ class Lab(object):
             print('Did not get transform')
 
         self.pc_glob = do_transform_cloud(self.pc_msg, trans)
-        self.bag.write('/pc_glob', self.pc_glob)
+        #self.bag.write('/pc_glob', self.pc_glob)
+        #self.bag.close()
+        # while(True):
+        #     self.test_publisher.publish(self.pc_glob)
+        #     rospy.sleep(3)
         print('Transformed point cloud')
 
     def check_limits(self, c):
@@ -173,52 +177,52 @@ class Lab(object):
             print("Detected centroid out of limits!")
             return
 
-        approach_pt = copy.deepcopy(centroid_pt)
-        approach_pt.z += 0.33
-        grasp_pt = copy.deepcopy(centroid_pt)
-        grasp_pt.z += 0.24
+        # approach_pt = copy.deepcopy(centroid_pt)
+        # approach_pt.z += 0.33
+        # grasp_pt = copy.deepcopy(centroid_pt)
+        # grasp_pt.z += 0.24
 
-        req.position = approach_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved to approach pose")
+        # req.position = approach_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved to approach pose")
 
-        req.position = grasp_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved to grasp pose")
+        # req.position = grasp_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved to grasp pose")
 
-        print("Ready to grasp!")
-        rospy.sleep(10)
+        # print("Ready to grasp!")
+        # rospy.sleep(10)
 
-        req.position = approach_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved above object")
+        # req.position = approach_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved above object")
 
-        self.go_home()
+        # self.go_home()
 
-        req.position = approach_place_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved above place location")
+        # req.position = approach_place_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved above place location")
 
-        req.position = place_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved to place pose")
+        # req.position = place_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved to place pose")
 
-        print("Ready to release!")
-        rospy.sleep(10)
+        # print("Ready to release!")
+        # rospy.sleep(10)
 
-        req.position = approach_place_pt
-        self.go_to_position_goal_client.call(req)
-        self.check_mission_done()
-        print("Moved above place location")
+        # req.position = approach_place_pt
+        # self.go_to_position_goal_client.call(req)
+        # self.check_mission_done()
+        # print("Moved above place location")
 
-        self.go_home()
+        # self.go_home()
 
-        print("Done with pick and place task.")
+        # print("Done with pick and place task.")
 
     def go_home(self):
         joint_goal = self.read_vector_from_yaml(
@@ -231,16 +235,17 @@ class Lab(object):
 def main():
     rospy.init_node('laboratory_exercise')
     lab = Lab()
+    # lab.go_home()
 
     joint_goal = lab.read_vector_from_yaml(
         'kinova_record.yaml')
     lab.record(joint_goal)
     print("Done with recording")
 
-    lab.go_home()
+    # lab.go_home()
 
-    # print("Starting laboratory exercise - pick and place task")
-    # lab.task1()
+    print("Starting laboratory exercise - pick and place task")
+    lab.task1()
 
 
 if __name__ == "__main__":

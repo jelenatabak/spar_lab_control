@@ -125,23 +125,20 @@ void Control::goToPosition() {
         geometry_msgs::Pose poseRef;
         poseRef.position = positionReference_;
 
-        if(false) 
+        if(positionReference_.y > 0) 
         {
             poseRef.orientation.x = 0.0;
-            poseRef.orientation.y = 0.7071068;
-            poseRef.orientation.z = 0.7071068;
-            poseRef.orientation.w = 0.0;
-
-            // poseRef.orientation.x = -0.7071068;
-            // poseRef.orientation.y = 0.0;
-            // poseRef.orientation.z = 0.0;
-            // poseRef.orientation.w = 0.7071068;
-
-            poseRef.orientation.x = 0.0;
-            poseRef.orientation.y = 1;
+            poseRef.orientation.y = 1.0;
             poseRef.orientation.z = 0.0;
             poseRef.orientation.w = 0.0;
-        }        
+        }
+        else
+        {
+            poseRef.orientation.x = 1.0;
+            poseRef.orientation.y = 0.0;
+            poseRef.orientation.z = 0.0;
+            poseRef.orientation.w = 0.0;
+        }
 
         tf2::Quaternion quat;
         tf2::fromMsg(poseRef.orientation, quat);

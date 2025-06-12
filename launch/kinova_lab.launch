@@ -1,14 +1,16 @@
 <launch>
     <rosparam command="load" file="$(find spar_lab_control)/resources/kinova_config.yaml" ns=''/>
 
-    <!-- <include file="$(find realsense2_camera)/launch/rs_rgbd.launch" /> -->
+    <include file="$(find realsense2_camera)/launch/rs_rgbd.launch" />
 
     <include file="$(find kortex_driver)/launch/kortex_driver.launch">
         <arg name="vision" value="false"/>
     </include>
     
     <node pkg="spar_lab_control" type="control" name="control" output="screen" ns="my_gen3" />
+    
+    <!-- <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 /camera_color_optical_frame /camera 1000"/> -->
 
-    <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.0096  0.1524  0.0649 -0.00822044 -0.30812056  0.95128671 -0.00690976 /end_effector_link /camera 100" />
+    <!-- <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.0096  0.1524  0.0649 -0.00822044 -0.30812056  0.95128671 -0.00690976 /end_effector_link /camera 100" /> -->
 
 </launch>
