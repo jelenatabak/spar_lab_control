@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/agrosparc/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/agrosparc/franka_ws/devel/include/**",
+        "/home/agrosparc/catkin_ws/src/DynamixelSDK/ros/dynamixel_sdk/include/**",
+        "/home/agrosparc/catkin_ws/src/dynamixel-workbench/dynamixel_workbench_controllers/include/**",
+        "/home/agrosparc/catkin_ws/src/dynamixel-workbench/dynamixel_workbench_operators/include/**",
+        "/home/agrosparc/catkin_ws/src/dynamixel-workbench/dynamixel_workbench_toolbox/include/**",
+        "/home/agrosparc/catkin_ws/src/for_franka_ros/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_asap/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_bsf/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_ros/franka_control/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_ros/franka_example_controllers/include/**",
+        "/home/agrosparc/franka_ws/src/franka_force_control/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_ros/franka_gazebo/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_ros/franka_gripper/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_ros/franka_hw/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_plastering/include/**",
+        "/home/agrosparc/catkin_ws/src/franka_position_servo/include/**",
+        "/home/agrosparc/catkin_ws/src/impedance_control/include/**",
+        "/home/agrosparc/catkin_ws/src/linear_kalman/include/**",
+        "/home/agrosparc/franka_ws/src/manipulator_moveit_control/include/**",
+        "/home/agrosparc/catkin_ws/src/mood_ros/include/**",
+        "/home/agrosparc/catkin_ws/src/optoforce-ros-pusblisher/include/**",
+        "/home/agrosparc/catkin_ws/src/panda_pepper_picking/include/**",
+        "/home/agrosparc/catkin_ws/src/rosserial/rosserial_server/include/**",
+        "/home/agrosparc/catkin_ws/src/rosserial/rosserial_test/include/**",
+        "/home/agrosparc/catkin_ws/src/sofia_exp/include/**",
+        "/home/agrosparc/catkin_ws/src/sofia_kinematics/include/**",
+        "/home/agrosparc/catkin_ws/src/uav_ros_lib/include/**",
+        "/home/agrosparc/catkin_ws/src/usb_cam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

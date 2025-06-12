@@ -1,0 +1,14 @@
+<launch>
+    <rosparam command="load" file="$(find spar_lab_control)/resources/kinova_config.yaml" ns=''/>
+
+    <!-- <include file="$(find realsense2_camera)/launch/rs_rgbd.launch" /> -->
+
+    <include file="$(find kortex_driver)/launch/kortex_driver.launch">
+        <arg name="vision" value="false"/>
+    </include>
+    
+    <node pkg="spar_lab_control" type="control" name="control" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.09289329  0.00365718  0.04394374 -0.18050734 -0.22896758  0.69854696 0.65347004 /panda_link8 /panda_camera 100" /> -->
+
+</launch>
