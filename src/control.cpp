@@ -214,7 +214,7 @@ moveit_msgs::CollisionObject Control::addBox(const char* name, float box_x, floa
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "UR5e");
+    ros::init(argc, argv, "control");
     ros::NodeHandle nodeHandle;
     ros::AsyncSpinner spinner(0);
     spinner.start();
