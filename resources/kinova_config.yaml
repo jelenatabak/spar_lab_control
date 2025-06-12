@@ -7,4 +7,4 @@ z_max: 0.2
 
 planning_group: 'arm'
 base_frame: 'base_link'
-camera_frame: 'end_effector_link'
+camera_frame: 'camera'

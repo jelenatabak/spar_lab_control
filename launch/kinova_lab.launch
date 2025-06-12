@@ -9,6 +9,6 @@
     
     <node pkg="spar_lab_control" type="control" name="control" />
 
-    <!-- <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.09289329  0.00365718  0.04394374 -0.18050734 -0.22896758  0.69854696 0.65347004 /panda_link8 /panda_camera 100" /> -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_link_broadcaster" args="0.0096  0.1524  0.0649 -0.00822044 -0.30812056  0.95128671 -0.00690976 /end_effector_link /camera 100" />
 
 </launch>
