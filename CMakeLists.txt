@@ -24,6 +24,7 @@ add_service_files(FILES
     jointGoal.srv
     poseGoal.srv
     positionGoal.srv
+    waypoint_record.srv
 )
 
 generate_messages(
