@@ -4,7 +4,7 @@ import sys
 import rospy
 import rospkg
 from sensor_msgs.msg import JointState
-from franka_interface.srv import *
+from spar_lab_control.srv import *
 import tf2_ros
 
 
