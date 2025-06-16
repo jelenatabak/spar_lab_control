@@ -162,7 +162,7 @@ class Lab(object):
         place_pt = Point()
         place_pt.x = 0.215
         place_pt.y = -0.35
-        place_pt.z = 0.2
+        place_pt.z = 0.25
 
         approach_place_pt = copy.deepcopy(place_pt)
         approach_place_pt.z += 0.1
@@ -177,52 +177,52 @@ class Lab(object):
             print("Detected centroid out of limits!")
             return
 
-        # approach_pt = copy.deepcopy(centroid_pt)
-        # approach_pt.z += 0.33
-        # grasp_pt = copy.deepcopy(centroid_pt)
-        # grasp_pt.z += 0.24
+        approach_pt = copy.deepcopy(centroid_pt)
+        approach_pt.z += 0.30
+        grasp_pt = copy.deepcopy(centroid_pt)
+        grasp_pt.z += 0.16
 
-        # req.position = approach_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved to approach pose")
+        req.position = approach_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved to approach pose")
 
-        # req.position = grasp_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved to grasp pose")
+        req.position = grasp_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved to grasp pose")
 
-        # print("Ready to grasp!")
-        # rospy.sleep(10)
+        print("Ready to grasp!")
+        rospy.sleep(10)
 
-        # req.position = approach_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved above object")
+        req.position = approach_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved above object")
 
-        # self.go_home()
+        self.go_home()
 
-        # req.position = approach_place_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved above place location")
+        req.position = approach_place_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved above place location")
 
-        # req.position = place_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved to place pose")
+        req.position = place_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved to place pose")
 
-        # print("Ready to release!")
-        # rospy.sleep(10)
+        print("Ready to release!")
+        rospy.sleep(10)
 
-        # req.position = approach_place_pt
-        # self.go_to_position_goal_client.call(req)
-        # self.check_mission_done()
-        # print("Moved above place location")
+        req.position = approach_place_pt
+        self.go_to_position_goal_client.call(req)
+        self.check_mission_done()
+        print("Moved above place location")
 
-        # self.go_home()
+        self.go_home()
 
-        # print("Done with pick and place task.")
+        print("Done with pick and place task.")
 
     def go_home(self):
         joint_goal = self.read_vector_from_yaml(
